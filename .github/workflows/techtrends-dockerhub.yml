@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Construct a GitHub Action, that would package and push 
 # the TechTrends application with the following requirements:
 
@@ -39,46 +38,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64, linux/arm64
           push: true
-=======
-# Construct a GitHub Action, that would package and push 
-# the TechTrends application with the following requirements:
-
-# Workflow Name
-name: Techtrends - Package with Docker
-
-# Trigger on every push on the main branch
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build:
-    # run the action on the ubuntu-latest operating system
-    runs-on: ubuntu-latest
-    steps:
-        # https://github.com/marketplace/actions/build-and-push-docker-images
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-        # https://github.com/docker/login-action
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-
-        # https://github.com/docker/build-push-action
-        # https://github.com/docker/build-push-action/blob/master/docs/advanced/multi-platform.md
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          # reference the location for TechTrends Dockerfile
-          file: ./Dockerfile
-          platforms: linux/amd64, linux/arm64
-          push: true
->>>>>>> 0d667ca219d99a79550be534ba1cd9838b38ee55
           tags: jegali/techtrends:latest
