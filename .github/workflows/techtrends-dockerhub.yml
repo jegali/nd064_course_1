@@ -35,7 +35,7 @@ jobs:
         with:
           context: .
           # reference the location for TechTrends Dockerfile
-          file: ./project/Dockerfile
+          file: ./Dockerfile
           platforms: linux/amd64
           push: true
           tags: jegali/techtrends:latest
