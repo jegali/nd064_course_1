@@ -8,6 +8,8 @@ name: Techtrends - Package with Docker
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]  
 
 jobs:
   build:
@@ -36,7 +38,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./project/
+          context: .
           # reference the location for TechTrends Dockerfile
           file: ./Dockerfile
           platforms: linux/amd64
