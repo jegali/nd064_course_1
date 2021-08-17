@@ -1,11 +1,52 @@
+## Docker commands to log in
+# I forgot to log in, that cost a lot of time, so I write this as comment for me
+docker login
+<enter username>
+<enter password>
+
 ## Docker commands used to build the application 
 # TODO: insert the docker build command
+docker build -f Dockerfile -t jegali/techtrends .
 
 ## Docker commands used to run the application
 # TODO: insert the docker run command
+docker run -d -p 7111:3111 jegali/techtrends
 
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
+docker password
 
-## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+(base) C:\Users\jens\OneDrive\CloudNative\nd064_course_1\project>docker ps
+CONTAINER ID   IMAGE               COMMAND           CREATED        STATUS          PORTS                                       NAMES
+14539f5da6d9   jegali/techtrends   "python app.py"   25 hours ago   Up 20 minutes   0.0.0.0:7111->3111/tcp, :::7111->3111/tcp   xenodochial_bouman
+
+docker logs 14539f5da6d9
+
+(base) C:\Users\jens\OneDrive\CloudNative\nd064_course_1\project>docker logs 14539f5
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2021-08-16 08:26:38,751 INFO werkzeug MainThread :  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+2021-08-16 08:26:48,799 INFO werkzeug Thread-1 : 172.17.0.1 - - [16/Aug/2021 08:26:48] "GET / HTTP/1.1" 200 -
+2021-08-16 08:26:48,846 INFO werkzeug Thread-2 : 172.17.0.1 - - [16/Aug/2021 08:26:48] "GET /static/css/main.css HTTP/1.1" 200 -
+2021-08-16 08:26:48,892 INFO werkzeug Thread-3 : 172.17.0.1 - - [16/Aug/2021 08:26:48] "GET /favicon.ico HTTP/1.1" 404 -
+2021-08-16 08:26:50,500 INFO app Thread-4 : Article '2020 CNCF Annual Report' delivered
+2021-08-16 08:26:50,506 INFO werkzeug Thread-4 : 172.17.0.1 - - [16/Aug/2021 08:26:50] "GET /1 HTTP/1.1" 200 -
+2021-08-16 08:26:50,530 INFO werkzeug Thread-5 : 172.17.0.1 - - [16/Aug/2021 08:26:50] "GET /static/css/main.css HTTP/1.1" 304 -
+2021-08-16 08:26:51,343 INFO app Thread-6 : About page delivered
+2021-08-16 08:26:51,347 INFO werkzeug Thread-6 : 172.17.0.1 - - [16/Aug/2021 08:26:51] "GET /about HTTP/1.1" 200 -
+2021-08-16 08:26:51,367 INFO werkzeug Thread-7 : 172.17.0.1 - - [16/Aug/2021 08:26:51] "GET /static/css/main.css HTTP/1.1" 304 -
+2021-08-16 08:26:54,381 INFO werkzeug Thread-8 : 172.17.0.1 - - [16/Aug/2021 08:26:54] "GET /about1 HTTP/1.1" 404 -
+2021-08-16 08:26:59,447 INFO werkzeug Thread-9 : 172.17.0.1 - - [16/Aug/2021 08:26:59] "GET /healthz HTTP/1.1" 200 -
+2021-08-16 08:27:04,153 INFO werkzeug Thread-10 : 172.17.0.1 - - [16/Aug/2021 08:27:04] "GET /metrics HTTP/1.1" 200 -
+2021-08-16 08:27:08,812 ERROR app Thread-11 : Article 8 does not exist
+2021-08-16 08:27:08,816 INFO werkzeug Thread-11 : 172.17.0.1 - - [16/Aug/2021 08:27:08] "GET /8 HTTP/1.1" 404 -
+2021-08-16 08:27:08,838 INFO werkzeug Thread-12 : 172.17.0.1 - - [16/Aug/2021 08:27:08] "GET /static/css/main.css HTTP/1.1" 304 -
+2021-08-16 09:28:31,811 INFO werkzeug Thread-13 : 172.17.0.1 - - [16/Aug/2021 09:28:31] "GET /create HTTP/1.1" 200 -
+2021-08-16 09:28:31,844 INFO werkzeug Thread-14 : 172.17.0.1 - - [16/Aug/2021 09:28:31] "GET /static/css/main.css HTTP/1.1" 304 -
+2021-08-16 09:28:53,523 INFO app Thread-15 : Article 'Just for the logs' created
+2021-08-16 09:28:53,524 INFO werkzeug Thread-15 : 172.17.0.1 - - [16/Aug/2021 09:28:53] "POST /create HTTP/1.1" 302 -
+2021-08-16 09:28:53,530 INFO werkzeug Thread-16 : 172.17.0.1 - - [16/Aug/2021 09:28:53] "GET / HTTP/1.1" 200 -
+2021-08-16 09:28:53,565 INFO werkzeug Thread-17 : 172.17.0.1 - - [16/Aug/2021 09:28:53] "GET /static/css/main.css HTTP/1.1" 304 -
