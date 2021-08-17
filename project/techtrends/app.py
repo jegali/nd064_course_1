@@ -51,7 +51,7 @@ logger = logging.getLogger("__name__")
 # - logger's name: %(name)s
 # - thread name: %(threadName)s
 # - log message: %(message)s 
-logging.basicConfig(filename="app.log", level=logging.DEBUG,
+logging.basicConfig(level=logging.DEBUG,
     format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 # create a handler for STDOUT
 out_handler = logging.StreamHandler(sys.stdout)
