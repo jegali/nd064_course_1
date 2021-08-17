@@ -8,6 +8,7 @@ import logging
 import sys
 
 # To count all database connection, we need a variable
+connection_count = 1
 connection_count = 0
 
 # Function to get a database connection.
