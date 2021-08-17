@@ -33,7 +33,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./project
+          context: project
           # reference the location for TechTrends Dockerfile
           file: ./Dockerfile
           platforms: linux/amd64
