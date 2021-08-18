@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: Step 5 Helm Charts
+keywords:
+  - techtrends
+version: 1.0.0
+maintainers:
+  - name: jegali
+    email: jens@jensgaulke.de
