@@ -6,9 +6,9 @@ from werkzeug.exceptions import abort
 # in order to be able to use logging, the module has to be imported
 import logging
 import sys
+import os
 
 # To count all database connection, we need a variable
-connection_count = 1
 connection_count = 0
 
 # Function to get a database connection.
@@ -38,32 +38,37 @@ def get_post(post_id):
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
 
-
-# Students wil be able to apply the best practices to develop an application
-# I found a hint at the knowledge base 
-# https://knowledge.udacity.com/questions/612353
-# get the standard logger
-logger = logging.getLogger("__name__")
-# Here i define the logging level DEBUG
-# writing the logs to a logfile and
-# setting the message's format to 
-# - timestamp: %(asctime)s
-# - loglevel: %(levelname)s
-# - logger's name: %(name)s
-# - thread name: %(threadName)s
-# - log message: %(message)s 
-logging.basicConfig(level=logging.DEBUG,
-    format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-# create a handler for STDOUT
-out_handler = logging.StreamHandler(sys.stdout)
-out_handler.setLevel(logging.DEBUG)
-# create a handler for STDERR
-err_handler = logging.StreamHandler(sys.stderr)
-err_handler.setLevel(logging.ERROR)
-# add the handler to the logger
-logger.addHandler(out_handler)
-#logger.addHandler(err_handler)
-
+def initialize_logging():
+    # Students wil be able to apply the best practices to develop an application
+    # I found a hint at the knowledge base 
+    # https://knowledge.udacity.com/questions/612353
+    # get the standard logger
+    # Tip from the project review to make logging dynamic
+    log_level = os.getenv("LOGLEVEL", "DEBUG").upper()
+    log_level = (
+        getattr(logging, log_level)
+        if log_level in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING",]
+        else logging.DEBUG
+    )
+    # create a handler for STDOUT
+    out_handler = logging.StreamHandler(sys.stdout)
+    out_handler.setLevel(log_level)
+    # create a handler for STDERR
+    err_handler = logging.StreamHandler(sys.stderr)
+    err_handler.setLevel(logging.ERROR)
+    handlers = [err_handler, out_handler]
+    # Here i define the logging level DEBUG
+    # writing the logs to a logfile and
+    # setting the message's format to 
+    # - timestamp: %(asctime)s
+    # - loglevel: %(levelname)s
+    # - logger's name: %(name)s
+    # - thread name: %(threadName)s
+    # - log message: %(message)s 
+    logging.basicConfig(level=logging.DEBUG,
+        format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s',
+        handlers=handlers)
+ 
 
 # Define the main route of the web application 
 @app.route('/')
@@ -185,4 +190,5 @@ def metrics():
 
 # start the application on port 3111
 if __name__ == "__main__":
+   initialize_logging() 
    app.run(host='0.0.0.0', port='3111')
